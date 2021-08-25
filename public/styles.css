@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+
+a {
+    text-decoration: none;
+    color: white;
+}
+body {
+    border: 0;
+    padding: 0;
+    background-color: #1b1e25;
+    user-select: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #a6556a;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 1000;
+    height: 600px;
+}
+
+.title {
+    font-size: 60px;
+}
+
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.box {
+    background-color: #a6556a;
+    color: #1b1e25;
+    padding: 20px;
+    padding-bottom: 10px;
+    width: 30px;
+    display: none;
+    overflow: visible;
+    margin: 15px;
+    border-radius: 5px;
+}
+
+.active {
+    display: block;
+}
+
+.box .time {
+    font-weight: 900;
+    font-size: 30px;
+}
+.box .text {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.new_year {
+    display: flex;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    background-color: #a6556a;
+    color: #1b1e25;
+    padding: 10px 20px 10px 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-size: 20px;
+}
+
+.links {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    color: white;
+    font-size: 15px;
+}
+
+.links .link {
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 20px;
+}
+
+[platform="github"] {
+    background-color: #333;
+    margin-bottom: 5px;
+}
+
+[platform="github"]:hover {
+    padding-left: 20px;
+}
+
+[platform="discord"] {
+    background-color: #5865f2;
+}
+
+[platform="discord"]:hover {
+    padding-left: 20px;
+}
