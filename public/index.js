@@ -5,7 +5,7 @@ const newYearText = document.getElementById("newyear"),
       newFullYear = new Date().getFullYear() + 1;
 
 const url = new URL(window.location);
-url.searchParams.set('by', 'soufly');
+url.searchParams.set('year', newFullYear);
 window.history.pushState({}, '', url);
 
 /*
@@ -126,7 +126,7 @@ const discordInvite = document.getElementsByClassName("link")[1];
 
 /* For Github */
 githubLink.addEventListener("click", () => {
-  window.location = "https://github.com/";
+  window.location = "https://github.com/soulfly34/newyear-counter.github.io";
 });
 /* For Discord */
 discordInvite.addEventListener("click", () => {
