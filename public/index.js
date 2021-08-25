@@ -20,8 +20,6 @@ document.title = `New Year - ${newFullYear} | New Year Counter`;
 */
 
 let newYear = new Date(newFullYear, 0, 1, 0, 0, 0)
-new Date(0, 0, );
-console.log(newYear)
 
 /* DOM Time Elements */
 let Elements = { 
