@@ -1,9 +1,8 @@
+const newYearText = document.getElementById("newyear"), /* Footer DOM Item */
+      newFullYear = new Date().getFullYear() + 1, /* Next Full Year */
+      newYear = new Date(newFullYear, 0, 1, 0, 0, 0); /* New Year Date */
 
-
-
-const newYearText = document.getElementById("newyear"), 
-      newFullYear = new Date().getFullYear() + 1;
-
+/* Web Query Add */
 const url = new URL(window.location);
 url.searchParams.set('year', newFullYear);
 window.history.pushState({}, '', url);
@@ -11,26 +10,22 @@ window.history.pushState({}, '', url);
 /*
  Change DOM Items
 */
+
 newYearText.innerText = `New Year: ${newFullYear}`;
 document.title = `New Year - ${newFullYear} | New Year Counter`;
 
 
-/* 
-  Get New Year
-*/
-
-let newYear = new Date(newFullYear, 0, 1, 0, 0, 0)
-
 /* DOM Time Elements */
-let Elements = { 
+const Elements = { 
     months: null, 
     weeks: null, 
     days: null, 
-    hours: null,
+    hours: null,/*  */
     minutes: null, 
     seconds: null
 };
 
+/* Select Item */
 
 Object.keys(Elements).forEach(key => {
     Elements[key] = document.querySelector(`#${key} .time`);
@@ -38,57 +33,20 @@ Object.keys(Elements).forEach(key => {
 
 
 /*
-  Counter
+  New Year Loop
 */
 
+let nextTime = (new Date().getTime() + (10000));
 setInterval(() => {
-    let nowYear = new Date(), /* Now Year */
-        leftNewYear = newYear.getTime() - nowYear.getTime();  /* Time Left */
-
-    let { seconds, minutes, hours, days, weeks, months } = formatDate(leftNewYear);
-
-    if(hours > 0 && days > 0 && weeks > 0 && months > 0){
-        Elements["seconds"].parentNode.classList.add("active");
-        Elements["seconds"].innerText = formatNumber(seconds);
-    } else {
-        Elements["seconds"].parentNode.classList.remove("active");
-    };
-
-    if(hours > 0 && days > 0 && weeks > 0 && months > 0){
-        Elements["minutes"].parentNode.classList.add("active");
-        Elements["minutes"].innerText = formatNumber(minutes);
-    } else {
-        Elements["minutes"].parentNode.classList.remove("active");
-    };
-
-    if(hours > 0 && days > 0 && weeks > 0 && months > 0){
-        Elements["hours"].parentNode.classList.add("active");
-        Elements["hours"].innerText = formatNumber(hours);
-    } else {
-        Elements["hours"].parentNode.classList.remove("active");
-    };
-
-    if(days > 0 && weeks > 0 && months > 0){
-        Elements["days"].parentNode.classList.add("active");
-        Elements["days"].innerText = formatNumber(days);
-    } else {
-        Elements["days"].parentNode.classList.remove("active");
-    };
-
-    if(weeks > 0 && months > 0){
-        Elements["weeks"].parentNode.classList.add("active");
-        Elements["weeks"].innerText = weeks;
-    } else {
-        Elements["weeks"].parentNode.classList.remove("active");
-    };
-
-    if(months > 0){
-        Elements["months"].parentNode.classList.add("active");
-        Elements["months"].innerText = formatNumber(months);
-    } else {
-        Elements["months"].parentNode.classList.remove("active");
-    };
-}, 1000);
+    const nowYear = new Date(), /* Now Year */
+          leftNewYear = nextTime - nowYear.getTime(),  /* Time Left */
+          disabledFormat = ["weeks"],
+          formatDates = formatDate(leftNewYear);
+          
+     Object.keys(formatDates).forEach((value) => {
+      Elements[value].innerText = !disabledFormat.includes(value) && formatNumber(formatDates[value]) || formatDates[value];
+    })
+}, 1000); // 1000 Milli Seconds = 1 Second 
 
 
 /* Methods */
@@ -98,22 +56,26 @@ function formatNumber(number){
 };
 
 function formatDate(ms){
-  let seconds = ~~(ms / 1000),
+  if(ms <= 0) ms = 0;
+
+  const seconds = ~~(ms / 1000),
       minutes = ~~(seconds / 60),
       hours = ~~(minutes / 60),
       days = ~~(hours / 24),
       weeks = ~~(days / 7), 
       months = ~~(weeks / 4);
-
-  return {
+  
+      console.log(seconds)
+   return {
     seconds: seconds % 60,
     minutes: minutes % 60,
     hours: hours % 24,
     days: days % 7,
-    weeks: weeks % 12,
-    months: months % 12
+    weeks: weeks % 4,
+    months
   }
 };
+
 
 /*
   Added event listener to make the site look classic.
