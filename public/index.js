@@ -39,7 +39,7 @@ Object.keys(Elements).forEach(key => {
 setInterval(() => {
     const nowYear = new Date(), /* Now Year */
           leftNewYear = newYear.getTime() - nowYear.getTime(),  /* Time Left */
-          disabledFormat = ["weeks"],
+          disabledFormat = ["weeks"], /* Disable Format Arrays */
           formatDates = formatDate(leftNewYear);
           
      Object.keys(formatDates).forEach((value) => {
