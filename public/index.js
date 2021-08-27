@@ -36,10 +36,9 @@ Object.keys(Elements).forEach(key => {
   New Year Loop
 */
 
-let nextTime = (new Date().getTime() + (10000));
 setInterval(() => {
     const nowYear = new Date(), /* Now Year */
-          leftNewYear = nextTime - nowYear.getTime(),  /* Time Left */
+          leftNewYear = newYear.getTime() - nowYear.getTime(),  /* Time Left */
           disabledFormat = ["weeks"],
           formatDates = formatDate(leftNewYear);
           
